@@ -1,17 +1,35 @@
 .main{
-  height: 62vh;
+  height: 40px;
   width: 20%;
   margin-left: 40%;
-  margin-top: 20vh;
+  margin-top: calc((100vh - 40px)/2);
   background-color: #fff;
   border-radius: 8px;
 }
 
+.showAni{
+  animation-name: appear;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.notFound{
+  background: url("../src/Assets/icons/computer.png");
+  height: 40% !important;
+  width: 50%;
+  background-size: 100% 100%;
+  margin-left: 24% !important;
+  margin-top: 10%;
+  object-fit: cover;
+}
+
 .search-bar{
   background-color: #fff;
-  height: 10%;
+  height: 40px;
   width: 100%;
   border-bottom: solid #b0b0b0 1px;
+  display: flex;
+  align-items: center;
 }
 
 .search-bar input{
@@ -43,6 +61,15 @@
   margin-left: 10%;
   margin-top: 10%;
   width: 80%;
+  object-fit: cover;
+}
+
+.serch-icon{
+  background: url("../src/Assets/icons/magnifying-glass.png");
+  height: 25px;
+  width: 25px;
+  background-size: 25px 25px;
+  cursor: pointer;
 }
 
 .description {
@@ -62,6 +89,17 @@
 
 .temp .degree{
   font-size: 10px;
+}
+
+@keyframes appear {
+  from{
+    height: 40px;
+    margin-top: calc((100vh - 40px)/2);
+  }
+  to{
+    height: 62vh;
+    margin-top: 20vh;
+  }
 }
 
 @font-face {
