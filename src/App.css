@@ -1,38 +1,80 @@
-.App {
+.main{
+  height: 62vh;
+  width: 20%;
+  margin-left: 40%;
+  margin-top: 20vh;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.search-bar{
+  background-color: #fff;
+  height: 10%;
+  width: 100%;
+  border-bottom: solid #b0b0b0 1px;
+}
+
+.search-bar input{
+  height: 100%;
+  width: 80%;
+  background-color: inherit;
+  outline: unset;
+  border: unset;
+  padding-left: 12px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.city-name{
+  height: 20px;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 12px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.icon{
+  height: 60%;
+  margin: 12px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.icon img{
+  height: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+  width: 80%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.description {
+  height: 20px;
+  margin: 8px 12px;
+  text-align: center;
+}
+
+.temp{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  height: 30px;
+  margin: 4px 12px;
+  font-size: 18px;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.temp .degree{
+  font-size: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: Opens-san-bold;
+  src: url('../src/Assets/fonts/Open_Sans/static/OpenSans/OpenSans-Bold.ttf');
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  font-family: Opens-san-bold;
+}
+
+body{
+  background-color: #202837;
 }

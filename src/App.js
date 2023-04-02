@@ -1,23 +1,96 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  let cityName = "";
+  let data = "";
+  let description = "";
+  let temp = "";
+  let ListIcon =
+  [
+      {
+        type: "Clear",
+        img: "https://cdn-icons-png.flaticon.com/512/6974/6974833.png",
+      },
+      {
+        type: "Rain",
+        img: "https://cdn-icons-png.flaticon.com/512/3351/3351979.png",
+      },
+      {
+        type: "Snow",
+        img: "https://cdn-icons-png.flaticon.com/512/642/642102.png",
+      },
+      {
+        type: "Clouds",
+        img: "https://cdn-icons-png.flaticon.com/512/414/414825.png",
+      },
+      {
+        type: "Haze",
+        img: "https://cdn-icons-png.flaticon.com/512/1197/1197102.png",
+      },
+      {
+        type: "Smoke",
+        img: "https://cdn-icons-png.flaticon.com/512/4380/4380458.png",
+      },
+      {
+        type: "Mist",
+        img: "https://cdn-icons-png.flaticon.com/512/4005/4005901.png",
+      },
+      {
+        type: "Drizzle",
+        img: "https://cdn-icons-png.flaticon.com/512/3076/3076129.png",
+      },
+    ]
+
+  async function inputOnKeyDown(event) {
+    if (event.key === "Enter") {
+      cityName = document.getElementById('input').value;
+      let APIString = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=53d2b9e5ffc4c41135c1487777c28306`;
+      data = await getData(APIString);
+      if (data['cod'] === '404'){
+        document.getElementById('cityName').innerHTML = "Not found";
+        document.getElementById('description').innerHTML = "";
+        document.getElementById('temp').innerHTML = "";
+        document.getElementById('icon').innerHTML = "";
+      } else {
+        document.getElementById('cityName').innerHTML = data['name'];
+        document.getElementById('description').innerHTML = data['weather'][0]['main'];
+        document.getElementById('temp').innerHTML = data['main']['temp'];
+        const el = document.createElement("div");
+        el.classList.add("degree");
+        el.textContent = "o";
+        document.getElementById('temp').append(el);
+        document.getElementById('temp').append("C");
+        let iconImg = "";
+        ListIcon.forEach(el => {
+          if (data['weather'][0]['main'] === el['type']) iconImg = el['img']
+        })
+        document.getElementById('icon').innerHTML = `<img src='${iconImg}'></img>`;
+      }
+    }
+  }
+
+  async function getData(api){
+    let data = await fetch(api);
+    let jsonData = await data.json();
+    if (jsonData.statusCode === 404) {
+      return "Not found";
+    } else {
+      return jsonData;
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="main">
+        <div className='search-bar'>
+          <input id='input' onKeyDown={inputOnKeyDown}></input>
+        </div>
+        <div className="city-name" id='cityName'></div>
+        <div className="icon" id='icon'></div>
+        <div className="description" id='description'>{description}</div>
+        <div className="temp" id='temp'>{temp}</div>
+      </div>
     </div>
   );
 }
